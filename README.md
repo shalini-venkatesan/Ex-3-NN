@@ -42,6 +42,8 @@ import numpy as np
 import pandas as pd
 import io
 import matplotlib.pyplot as plt
+````
+````py
 x=np.array([[0,0,1,1],[0,1,0,1]])
 y=np.array([[0,1,1,0]])
 n_x = 2
@@ -52,16 +54,22 @@ lr = 0.1
 np.random.seed(2)
 w1 = np.random.rand(n_h,n_x)   # Weight matrix for hidden layer
 w2 = np.random.rand(n_y,n_h)   # Weight matrix for output layer
+````
+````py
 losses = []
 def sigmoid(z):
     z= 1/(1+np.exp(-z))
     return z
+````
+````py
 def forward_prop(w1,w2,x):
     z1 = np.dot(w1,x)
     a1 = sigmoid(z1)
     z2 = np.dot(w2,a1)
     a2 = sigmoid(z2)
     return z1,a1,z2,a2
+````
+````py
 def back_prop(m,w1,w2,z1,a1,z2,a2,y):
     dz2 = a2-y
     dw2 = np.dot(dz2,a1.T)/m
@@ -78,7 +86,8 @@ for i in range(iterations):
     da2,dw2,dz1,dw1 = back_prop(m,w1,w2,z1,a1,z2,a2,y)
     w2 = w2-lr*dw2
     w1 = w1-lr*dw1
-    # We plot losses to see how our network is doing
+````
+# We plot losses to see how our network is doing
 plt.plot(losses)
 plt.xlabel("EPOCHS")
 plt.ylabel("Loss value")
@@ -89,7 +98,8 @@ def predict(w1,w2,input):
         print( [i[0] for i in input], 1)
     else:
         print( [i[0] for i in input], 0)
-
+````
+````
 print('Input',' Output')
 test=np.array([[1],[0]])
 predict(w1,w2,test)
